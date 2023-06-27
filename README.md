@@ -181,7 +181,8 @@ This lab's purpose is to understand how Active Directory and Windows networking 
   - **Name:** "_ADMINS"
 > NOTE: This will not give it the admin permissions yet. That will be configured later
 
-![ip_configs](https://github.com/JAcobCovarrubias/Set-up-Windows-Active-Directory/assets/137449348/dfbd6a0e-63d1-4588-ab46-51f30e2c509a)
+![organizational_unit](https://github.com/JAcobCovarrubias/Set-up-Windows-Active-Directory/assets/137449348/dc9fec88-4e3d-4e5a-9913-55114175cd12)
+
 
 - Right-click the **_ADMINS** Organizational Unit > **New** > **User**
 - Fill out first and last name
@@ -195,7 +196,8 @@ This lab's purpose is to understand how Active Directory and Windows networking 
 - Press **Ok** > **Apply** > **Ok**
 - Sign out of the Domain Controller and login with new credentials
 
-![](images/add_to_admin.png)
+![add_to_admin](https://github.com/JAcobCovarrubias/Set-up-Windows-Active-Directory/assets/137449348/14b92427-65b9-4656-9656-b5b93d3455d5)
+
 
 ## Step 8: Install Remote Access Server (RAS) and Network Address Translation (NAT)
 ### Install RAS
@@ -211,7 +213,7 @@ This lab's purpose is to understand how Active Directory and Windows networking 
 - Select the "INTERNETexternal" NIC
 > NOTE: If the option is greyed out, cancel the operation and try again
 
-![](images/server_ras_nat.png)
+![server_ras_nat](https://github.com/JAcobCovarrubias/Set-up-Windows-Active-Directory/assets/137449348/90b91492-6885-4615-9c71-0054f9a5ed98)
 
 ## Step 9: Set up a Dynamic Host Configuration Protocol (DHCP) Server
 > NOTE: This will allow Windows 10 clients to obtain an IP address and browse the internet 
@@ -231,7 +233,7 @@ This lab's purpose is to understand how Active Directory and Windows networking 
 - Click **Next** with all other defaults and **Finish** 
 > NOTE: IPv4 DHCP might still be red and down so right-click **dc.mydomain.com** > **Authorize** and **Refresh** 
 
-![](images/dhcp.png)
+![dhcp](https://github.com/JAcobCovarrubias/Set-up-Windows-Active-Directory/assets/137449348/14bd9127-d389-4443-9091-dbfb825e16fe)
 
 ## Step 10: Use PowerShell Script to add 1,000+ Users
 ### Enable Web Browsing on Domain Controller
@@ -242,7 +244,7 @@ This lab's purpose is to understand how Active Directory and Windows networking 
 - Open Internet Explorer to download the [PowerShell Script](https://github.com/joshmadakor1/AD_PS) to the Desktop (Written by Josh Madakor)
 - **Code** > **Download Zip**
 
-![](images/script_download.png)
+![script_download](https://github.com/JAcobCovarrubias/Set-up-Windows-Active-Directory/assets/137449348/94fbd8bc-217b-469b-87ae-e2af9aa32225)
 
 - Open the "names.txt" file and add your name to the top of the list and save
 - **Start** > right-click **Windows PowerShell ISE** > **More** > **Run as administrator** 
@@ -250,7 +252,7 @@ This lab's purpose is to understand how Active Directory and Windows networking 
 - Enable the Execution of all Scripts on Server
 - In the PowerShell command line type: `Set-ExecutionPolicy Unrestricted` and hit **Enter** > **Yes to All** 
 
-![](images/execpolicy.png)
+![execpolicy](https://github.com/JAcobCovarrubias/Set-up-Windows-Active-Directory/assets/137449348/f5e4ee6c-9439-4a70-8379-683bb35e3f40)
 
 > NOTE: In essence this script will take the names from "names.txt" and save them into an array ($USER_FIRST_LAST_LIST = Get-Content .\names.txt)
 The script will loop for each user and separate the first name from the last name. 
@@ -262,16 +264,17 @@ Finally it will go through the process of adding each user to the domain (New-Ad
 - Change directory in PowerShell's command line: `cd c:\Users\<username>\Desktop\AD-PS-master` and hit **Enter**
 - Click the green **Play** button > **Run once**
 
-![](images/running_script.png)
+![running_script](https://github.com/JAcobCovarrubias/Set-up-Windows-Active-Directory/assets/137449348/cfded799-27a9-4f86-aebe-d9af167a2f27)
 
 - Go to **Server Manager** > **Active Directory Users and Computers** > right-click **mydomain.com** > **Refresh**
 - It should now show the **_USERS** Organizational Unit with all the users created from the script
 - To search for a specific user right-click **_USERS** > **Find** 
 
-![](images/users_ad.png)
+![users_ad](https://github.com/JAcobCovarrubias/Set-up-Windows-Active-Directory/assets/137449348/ae054048-db9c-4240-a0e5-913debba5786)
+
 > NOTE: The users from the PowerShell Script now appear in AD.
 
-![](images/find_user.png)
+![find_user](https://github.com/JAcobCovarrubias/Set-up-Windows-Active-Directory/assets/137449348/6a7c4d08-ebd5-42b2-8611-6fff7afcc513)
 > NOTE: User Jim Halpert has been imported from the names.txt file and added to AD with the help of PowerShell
 
 ## Step 11: Create and Configure Windows 10 Client VM
@@ -299,7 +302,7 @@ Finally it will go through the process of adding each user to the domain (New-Ad
 - Select the DVD dropdown menu and find the Windows 10 ISO file
 - Click **Mount and Retry Boot**
 
-![](images/inst_win_pro.png)
+![inst_win_pro](https://github.com/JAcobCovarrubias/Set-up-Windows-Active-Directory/assets/137449348/081d6455-647a-4b9c-bbd4-5b8385b2f65d)
 
 - **I don't have a product key**
 - **Windows 10 Pro**
@@ -315,13 +318,14 @@ Finally it will go through the process of adding each user to the domain (New-Ad
 
 ## Step 13: Verify Internet Connectivity
 
-![](images/client1_connection.png)
+!
+![client1_connection](https://github.com/JAcobCovarrubias/Set-up-Windows-Active-Directory/assets/137449348/699c75f7-2298-4055-b6dc-3ae12a4bfd4c)
 
 - **Start** > "cmd"
 - Type `ipconfig`
 - Ping a website like Google: `ping www.google.com`
 
-![](images/server_dhcp_lease.png)
+![server_dhcp_lease](https://github.com/JAcobCovarrubias/Set-up-Windows-Active-Directory/assets/137449348/8bf0289a-1e38-4ed3-846b-485cc53acd27)
 > NOTE: DHCP is working on Domain Controller. CLIENT1 has an IP address leased to it and the default gateway is set to the DC's IP address.
 
 ## Step 14: Rename PC and Add to Domain
@@ -331,7 +335,8 @@ Finally it will go through the process of adding each user to the domain (New-Ad
 - Sign in with admin account to give CLIENT1 permissions to join domain
 - **Close** and **Restart now**
 
-![](images/rename_client1.png)
+![rename_client1](https://github.com/JAcobCovarrubias/Set-up-Windows-Active-Directory/assets/137449348/aab9145d-a690-4348-b7c9-b5cce8c87919)
+
 
 ## Step 14: Login With Generated User Credentials
 
